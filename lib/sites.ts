@@ -11,7 +11,6 @@ export const sites = [
   "https://onesquareminesweeper.com/",
   "https://longdogechallenge.com/",
   "https://patience.toys/",
-  "https://thatsthefinger.com/",
   "https://chillestmonkey.com/",
   "https://binarypiano.com/",
   "https://cruel.toys/",
@@ -47,7 +46,6 @@ export const sites = [
   "https://papertoilet.com/",
   "https://doublepressure.com/",
   "https://toybox.toms.toys/",
-  "https://staggeringbeauty.com/",
   "https://remoji.com/",
   "https://zzz.zoomquilt.org/",
   "https://dadlaughbutton.com/",
@@ -129,6 +127,11 @@ export const sites = [
   "https://rotopo.com/",
 ];
 
+let _queue: string[] = [];
+
 export function getRandomSite() {
-  return sites[Math.floor(Math.random() * sites.length)];
+  if (_queue.length === 0) {
+    _queue = [...sites].sort(() => Math.random() - 0.5);
+  }
+  return _queue.pop()!;
 }

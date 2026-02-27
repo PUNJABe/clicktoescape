@@ -28,9 +28,12 @@ export default function Home() {
   const handleClick = () => {
     if (loading) return;
     setLoading(true);
+
     const randomSite = getRandomSite();
+    window.open(randomSite, "_blank");
+
     setTimeout(() => {
-      window.location.href = randomSite;
+      setLoading(false);
     }, 800);
   };
 
@@ -45,15 +48,16 @@ export default function Home() {
       {loading ? (
         <div className="flex flex-col items-center space-y-4">
           <div className="loader" />
-          <p className="text-lg font-medium">Launching the adventure...</p>
+          <p className="text-lg font-medium">Teleporting... ✨</p>
         </div>
       ) : (
         <button
+          id="awayBtn"
           onClick={handleClick}
           disabled={loading}
-          className="relative inline-block px-20 py-6 text-2xl font-bold rounded-full bg-red-600 hover:bg-red-700 focus:bg-red-800 transition-colors duration-200 shadow-2xl pulse-glow transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn-modern pulse-glow"
         >
-          🎯 TAKE ME AWAY
+          Take Me Away 🚀
         </button>
       )}
 
